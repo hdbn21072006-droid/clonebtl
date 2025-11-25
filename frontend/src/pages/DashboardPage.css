@@ -1,0 +1,215 @@
+
+.dashboard-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header */
+.dashboard-header {
+  background: white;
+  padding: 2rem 3rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+.dashboard-header h1 {
+  font-size: 2.2rem;
+  color: #2d3748;
+  margin: 0;
+  font-weight: 600;
+}
+
+.dashboard-date {
+  color: #718096;
+  font-size: 1.1rem;
+  margin: 0.5rem 0 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logout-btn {
+  background: #e53e3e;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.8rem;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s;
+}
+
+.logout-btn:hover {
+  background: #c53030;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(229, 62, 62, 0.3);
+}
+
+/* 4 ô ngang giống hệt ảnh */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.8rem;
+  margin-bottom: 3rem;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 1.2rem;
+  padding: 1.8rem;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* Màu nền + icon cho từng ô */
+.stat-card:nth-child(1) { border-left: 6px solid #4299e1; }
+.stat-card:nth-child(2) { border-left: 6px solid #48bb78; }
+.stat-card:nth-child(3) { border-left: 6px solid #ed8936; }
+.stat-card:nth-child(4) { border-left: 6px solid #f56565; }
+
+.stat-card svg {
+  width: 60px;
+  height: 60px;
+  padding: 12px;
+  border-radius: 16px;
+  color: white;
+}
+
+/* Màu icon riêng */
+.stat-card:nth-child(1) svg { background: #4299e1; }
+.stat-card:nth-child(2) svg { background: #48bb78; }
+.stat-card:nth-child(3) svg { background: #ed8936; }
+.stat-card:nth-child(4) svg { background: #f56565; }
+
+.stat-card h3 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin: 0;
+  color: #2d3748;
+}
+
+.stat-card p {
+  margin: 0.4rem 0 0;
+  color: #718096;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Dòng "View Details" nhỏ giống ảnh */
+.stat-card::after {
+  content: 'View Details';
+  position: absolute;
+  bottom: 1rem;
+  right: 1.5rem;
+  font-size: 0.9rem;
+  color: #4299e1;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.stat-card::after::after {
+  content: '→';
+  font-weight: bold;
+}
+
+.stat-card:hover::after {
+  opacity: 1;
+}
+
+/* Hoạt động gần đây */
+.recent-activity {
+  background: white;
+  border-radius: 1.2rem;
+  padding: 2rem;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+}
+
+.recent-activity h2 {
+  font-size: 1.6rem;
+  color: #2d3748;
+  margin: 0 0 1.5rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.activity-item {
+  padding: 1rem 0;
+  border-bottom: 1px dashed #e2e8f0;
+  color: #4a5568;
+  font-size: 1.05rem;
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+.activity-item strong {
+  color: #2d3748;
+}
+
+.activity-item em {
+  color: #4299e1;
+  font-style: italic;
+  font-weight: 600;
+}
+
+/* Nút FAB */
+.fab-button {
+  position: fixed;
+  bottom: 2.5rem;
+  right: 2.5rem;
+  width: 64px;
+  height: 64px;
+  background: #4299e1;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 2rem;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(66, 153, 225, 0.4);
+  transition: all 0.3s;
+  z-index: 1000;
+}
+
+.fab-button:hover {
+  transform: scale(1.15);
+  background: #3182ce;
+  box-shadow: 0 15px 40px rgba(66, 153, 225, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dashboard-header { flex-direction: column; text-align: center; gap: 1rem; }
+  .stats-grid { grid-template-columns: 1fr; }
+  .fab-button { bottom: 1.5rem; right: 1.5rem; }
+}
