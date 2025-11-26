@@ -19,8 +19,8 @@ const DashboardPage: React.FC = () => {
   };
 
   const recentActivities = [
-    { id: 1, name: 'Nguyễn Văn An', action: 'đã mượn sách', book: 'Lập trình ReactJS Nâng Cao' },
-    { id: 2, name: 'Trần Thị Bình', action: 'đã trả sách', book: 'Node.js Toàn Tập' },
+    { id: 1, name: 'Nguyễn Văn An', action: ' mượn sách', book: 'Lập trình ReactJS Nâng Cao' },
+    { id: 2, name: 'Trần Thị Bình', action: 'da trả sách', book: 'Node.js Toàn Tập' },
     { id: 3, name: 'Lê Văn Cường', action: 'đã mượn sách', book: 'Thuật toán và Cấu trúc dữ liệu' },
   ];
 
