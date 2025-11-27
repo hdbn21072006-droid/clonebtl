@@ -1,44 +1,288 @@
-
+/* QuanLySach.css */
 .quan-ly-sach-container {
-  padding: 20px; background-color: #f8f9fa; min-height: 100vh;
-}
-.header-actions {
-  display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;
-}
-.search-input {
-  width: 100%; max-width: 400px; padding: 10px 15px;
-  border: 1px solid #ddd; border-radius: 25px; outline: none;
+  /* Màu nền Gradient giống hệt Dashboard */
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+  min-height: 100vh;
+  padding: 30px;
+  font-family: 'Segoe UI', sans-serif;
 }
 
+/* Header */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.page-header h2 {
+  color: #2d3748;
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+
+.btn-back {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #4a5568;
+  transition: all 0.2s;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.btn-back:hover {
+  background: #edf2f7;
+  transform: translateX(-3px);
+}
+
+.btn-primary {
+  background: #5a67d8; /* Màu Indigo giống ô thống kê Dashboard */
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 6px rgba(90, 103, 216, 0.3);
+  transition: transform 0.2s;
+}
+
+.btn-primary:hover {
+  background: #4c51bf;
+  transform: translateY(-2px);
+}
+
+/* Search Bar */
+.search-bar {
+  margin-bottom: 30px;
+  position: relative;
+  max-width: 600px;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 15px 15px 15px 50px;
+  border: none;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+  font-size: 1rem;
+  transition: box-shadow 0.2s;
+}
+
+.search-bar input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(90, 103, 216, 0.2);
+}
+
+.search-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a0aec0;
+}
+
+/* GRID LAYOUT CHO SÁCH */
 .book-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 20px;
+  display: grid;
+  /* Tự động chia cột, mỗi cột tối thiểu 280px */
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 25px;
 }
+
 .book-card {
-  background: white; border-radius: 10px; overflow: hidden; display: flex;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.2s;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: 1px solid #edf2f7;
+  display: flex;
+  flex-direction: column;
 }
-.book-card:hover { transform: translateY(-5px); }
-.book-image-wrapper {
-  width: 120px; background: #007bff; display: flex; align-items: center; justify-content: center;
+
+.book-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
-.book-cover { width: 80px; border-radius: 4px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
-.book-info { padding: 15px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
-.book-title { margin: 0 0 5px; font-size: 18px; color: #333; }
-.book-stats { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
 
-.btn-add { background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
-.btn-edit { background: #ffc107; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; margin-right: 5px; }
-.btn-delete { background: #fff; color: #dc3545; border: 1px solid #dc3545; padding: 5px 10px; border-radius: 4px; cursor: pointer; }
-.btn-delete:hover { background: #dc3545; color: white; }
+.book-image {
+  height: 200px; /* Chiều cao ảnh cố định */
+  width: 100%;
+  position: relative;
+  background: #cbd5e0;
+}
 
-.pagination { display: flex; justify-content: center; gap: 10px; margin-top: 30px; }
-.pagination button { padding: 8px 15px; cursor: pointer; }
+.book-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Cắt ảnh đẹp, không méo */
+}
 
+/* Badge trạng thái */
+.status-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  backdrop-filter: blur(4px);
+}
+
+.status-badge.available {
+  background: rgba(220, 252, 231, 0.9);
+  color: #15803d; /* Xanh lá */
+}
+
+.status-badge.out-of-stock {
+  background: rgba(254, 226, 226, 0.9);
+  color: #b91c1c; /* Đỏ */
+}
+
+/* Thông tin sách */
+.book-info {
+  padding: 15px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.book-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #718096;
+  margin-bottom: 8px;
+}
+
+.book-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0 0 5px 0;
+  line-height: 1.4;
+  /* Cắt chữ nếu dài quá 2 dòng */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.book-author {
+  font-size: 0.9rem;
+  color: #4a5568;
+  margin: 0 0 15px 0;
+}
+
+.book-stats {
+  display: flex;
+  justify-content: space-between;
+  background: #f7fafc;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  margin-top: auto; /* Đẩy xuống dưới */
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.stat-item .label { color: #718096; }
+.stat-item .value { font-weight: bold; font-size: 1rem; color: #2d3748; }
+.stat-item .value.highlight { color: #5a67d8; }
+
+/* Buttons */
+.book-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.btn-action {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition: background 0.2s;
+}
+
+.btn-action.edit {
+  background: #edf2f7;
+  color: #4a5568;
+}
+
+.btn-action.edit:hover { background: #e2e8f0; }
+
+.btn-action.delete {
+  background: #fff5f5;
+  color: #e53e3e;
+}
+
+.btn-action.delete:hover { background: #fed7d7; }
+
+/* Pagination & Modal: Giữ nguyên style cũ hoặc chỉnh nhẹ cho khớp */
+.pagination {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.pagination button {
+  background: white;
+  border: 1px solid #cbd5e0;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: #5a67d8;
+  color: white;
+  border-color: #5a67d8;
+}
+
+/* Modal styles (Tinh chỉnh cho đẹp hơn) */
 .modal-overlay {
-  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 1000;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  backdrop-filter: blur(2px);
 }
-.modal-content { background: white; padding: 25px; border-radius: 8px; width: 500px; }
-.form-group { margin-bottom: 15px; display: flex; flex-direction: column; }
-.form-group input, .form-group select { padding: 10px; border: 1px solid #ccc; border-radius: 4px; margin-top: 5px; }
-.modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  width: 500px;
+  max-width: 90%;
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+}

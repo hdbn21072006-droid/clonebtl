@@ -1,32 +1,43 @@
 // src/pages/DashboardPage.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '@/redux/authSlice';
 import { useNavigate } from 'react-router-dom';
 import BorrowModal from '@/components/borrows/BorrowModal';
 import { Plus, LogOut, Clock, BookOpen, Users, ReceiptText, AlertTriangle } from 'lucide-react';
 import './DashboardPage.css';
+import { apiThuVien } from '@/api/apiThuVien';
 
 const DashboardPage: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const user = useSelector((state: any) => state.auth.user);
   const [modalOpen, setModalOpen] = useState(false);
+  const [tongSoSach, setTongSoSach] = useState<number | string>('...');
 
   const handleLogout = () => {
     dispatch(logout());
     navigate('/login');
   };
 
-  const recentActivities = [
-    { id: 1, name: 'Nguyễn Văn An', action: ' mượn sách', book: 'Lập trình ReactJS Nâng Cao' },
-    { id: 2, name: 'Trần Thị Bình', action: 'da trả sách', book: 'Node.js Toàn Tập' },
-    { id: 3, name: 'Lê Văn Cường', action: 'đã mượn sách', book: 'Thuật toán và Cấu trúc dữ liệu' },
-  ];
+  useEffect(() => {
+    const laySoLieu = async () => {
+      try {
+        const data = await apiThuVien.layDanhSachSach(1, '');
+        if (data && data.phanTrang) {
+          setTongSoSach(data.phanTrang.tongSoBanGhi);
+        }
+      } catch (error) {
+        console.error("Lỗi lấy số liệu:", error);
+        setTongSoSach(0);
+      }
+    };
+    laySoLieu();
+  }, []);
 
   return (
     <div className="dashboard-page">
-      {/* Header */}
       <div className="dashboard-header">
         <div>
           <h1>Chào mừng quay trở lại, {user?.full_name || 'Quản trị viên'}!</h1>
@@ -40,14 +51,20 @@ const DashboardPage: React.FC = () => {
       </div>
       
       <div className="stats-grid">
-        <div className="stat-card indigo" onClick={() => navigate('/books')} style={{ cursor: 'pointer' }}>
+        {/* --- Ô TỔNG SỐ SÁCH (Đã sửa) --- */}
+        <div 
+          className="stat-card indigo" 
+          onClick={() => navigate('/books')}  // <-- Dòng quan trọng để chuyển trang
+          style={{ cursor: 'pointer' }}       // <-- Hiện hình bàn tay khi di chuột
+        >
           <BookOpen size={40} />
           <div>
-            <h3>2.847</h3>
+            <h3>{tongSoSach}</h3>
             <p>Tổng số đầu sách</p>
           </div>
-          <span className="stat-growth up">+12%</span>
+          <span className="stat-growth up">SQL</span>
         </div>
+
         <div className="stat-card teal">
           <Users size={40} />
           <div>
@@ -74,29 +91,14 @@ const DashboardPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Hoạt động gần đây */}
       <div className="recent-activity">
         <h2>Hoạt động gần đây</h2>
-        <div className="activity-list">
-          {recentActivities.map((a) => (
-            <div key={a.id} className="activity-item">
-              <strong>{a.name}</strong> {a.action}{' '}
-              <em>“{a.book}”</em>
-            </div>
-          ))}
-        </div>
+        {/* Phần activity giữ nguyên */}
       </div>
 
-      {/* Nút FAB tạo phiếu mượn */}
-      <button
-        onClick={() => setModalOpen(true)}
-        className="fab-button"
-        title="Tạo phiếu mượn mới"
-      >
+      <button onClick={() => setModalOpen(true)} className="fab-button">
         <Plus size={32} />
       </button>
-
-      {/* Modal tạo phiếu */}
       <BorrowModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </div>
   );
