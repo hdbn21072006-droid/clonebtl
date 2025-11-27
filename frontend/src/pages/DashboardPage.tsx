@@ -40,7 +40,7 @@ const DashboardPage: React.FC = () => {
       </div>
       
       <div className="stats-grid">
-        <div className="stat-card indigo">
+        <div className="stat-card indigo" onClick={() => navigate('/books')} style={{ cursor: 'pointer' }}>
           <BookOpen size={40} />
           <div>
             <h3>2.847</h3>

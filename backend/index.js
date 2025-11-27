@@ -6,6 +6,7 @@ const bcrypt = require('bcryptjs'); // Để mã hóa mật khẩu
 const jwt = require('jsonwebtoken'); // Để tạo token
 const pool = require('./db'); // Import kết nối DB
 const authMiddleware = require('./authMiddleware'); // Import "người gác cổng"
+const quanLySachController = require('./quanLySachController'); // Import controller sách
 
 const app = express();
 const PORT = 8080; // Cổng backend sẽ chạy
@@ -115,20 +116,27 @@ app.get('/api/auth/me', authMiddleware, async (req, res) => {
   });
 });
 
-// --- Nhiệm vụ của Người 2: Quản lý Sách (Chờ code) ---
-// app.get('/api/books', ...)
-// app.post('/api/books', authMiddleware, ...) // Chỉ admin mới được thêm sách
+// --- Nhiệm vụ của Người 2: Quản lý Sách ---
+// API lấy danh sách sách
+app.get('/api/books', quanLySachController.layDanhSachSach);
 
+// API lấy danh sách thể loại
+app.get('/api/categories', quanLySachController.layDanhSachTheLoai);
 
+// API thêm sách mới (chỉ admin)
+app.post('/api/books', authMiddleware, quanLySachController.themSachMoi);
 
+// API cập nhật sách (chỉ admin)
+app.put('/api/books/:id', authMiddleware, quanLySachController.capNhatSach);
 
-// --- Nhiệmvụ của Người 3: Quản lý Bạn đọc (Chờ code) ---
+// API xóa sách (chỉ admin)
+app.delete('/api/books/:id', authMiddleware, quanLySachController.xoaSach);
+
+// --- Nhiệm vụ của Người 3: Quản lý Bạn đọc (Chờ code) ---
 // app.get('/api/readers', authMiddleware, ...)
-
 
 // --- Nhiệm vụ của Người 4: Mượn/Trả (Chờ code) ---
 // app.post('/api/borrows', authMiddleware, ...)
-
 
 // === Chạy Server ===
 app.listen(PORT, () => {
