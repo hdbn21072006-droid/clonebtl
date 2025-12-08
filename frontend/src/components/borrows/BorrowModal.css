@@ -1,0 +1,98 @@
+/* src/components/borrows/BorrowModal.css */
+.borrow-modal-form {
+  display: grid;
+  gap: 1rem;
+  padding: 1.5;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+  color: #2d3748;
+  font-size: 1rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 1rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  transition: all 0.3s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 5px rgba(99, 102, 241, 0.2);
+}
+
+.date-input-wrapper .date-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  z-index: 1;
+  pointer-events: none;
+  color: #6366f1;
+}
+
+.date-input {
+  width: 100%;
+  padding: 1rem 1rem 1rem 3.2rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 14px;
+  font-size: 1.05rem;
+  background: white;
+  color: #1e293b;
+  cursor: pointer;
+}
+
+.date-input:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 5px rgba(99, 102, 241, 0.2);
+}
+
+.date-input-wrapper.due .date-icon {
+  color: #f59e0b;
+}
+
+.date-input-wrapper.due .date-input {
+  background: #fffbeb;
+  border-color: #fbbf24;
+  color: #92400e;
+  font-weight: 600;
+}
+
+/* 2 cột ngày */
+.date-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+/* Nút hành động */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.submit-btn {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+  color: white !important;
+  padding: 1rem 2.2rem !important;
+  font-weight: 700;
+  border-radius: 14px;
+  font-size: 1.05rem;
+}
+
+.submit-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 35px rgba(99, 102, 241, 0.5);
+}

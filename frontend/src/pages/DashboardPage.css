@@ -1,0 +1,246 @@
+/* =========================================
+   DASHBOARD PAGE - MODERN STYLE
+   ========================================= */
+.dashboard-page {
+  /* Nền gradient nhẹ nhàng, hiện đại */
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  padding: 30px;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: #2d3748;
+}
+
+/* --- HEADER --- */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  background: rgba(255, 255, 255, 0.8); /* Nền kính mờ nhẹ */
+  backdrop-filter: blur(10px);
+  padding: 20px 25px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px -5px rgba(0,0,0,0.05);
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: linear-gradient(to right, #2c3e50, #3498db);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.statistics-header-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 6px -1px rgba(102, 126, 234, 0.3), 0 2px 4px -1px rgba(102, 126, 234, 0.2);
+  transition: all 0.3s ease;
+}
+
+.statistics-header-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(102, 126, 234, 0.4);
+}
+
+.dashboard-date {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #718096;
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  background: white;
+  color: #e53e3e;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: #e53e3e;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(229, 62, 62, 0.3);
+}
+
+/* --- STATS GRID (Các ô thống kê) --- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.stat-card {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+  /* Hiệu ứng bóng hiện đại, thay đổi theo màu */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255,255,255,0.5);
+}
+
+.stat-card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* Tạo điểm nhấn màu sắc cho icon và bóng */
+.stat-card svg {
+  padding: 12px;
+  border-radius: 14px;
+  transition: transform 0.3s ease;
+}
+.stat-card:hover svg { transform: rotate(10deg) scale(1.1); }
+
+/* Màu Indigo (Tổng sách) */
+.stat-card.indigo svg { background: #e0e7ff; color: #4f46e5; }
+.stat-card.indigo:hover { box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.3); }
+
+/* Màu Teal (Thành viên) */
+.stat-card.teal svg { background: #ccfbf1; color: #0d9488; }
+.stat-card.teal:hover { box-shadow: 0 20px 25px -5px rgba(13, 148, 136, 0.3); }
+
+/* Màu Amber (Đang mượn) */
+.stat-card.amber svg { background: #fef3c7; color: #d97706; }
+.stat-card.amber:hover { box-shadow: 0 20px 25px -5px rgba(217, 119, 6, 0.3); }
+
+/* Màu Red (Quá hạn) */
+.stat-card.red svg { background: #fee2e2; color: #dc2626; }
+.stat-card.red:hover { box-shadow: 0 20px 25px -5px rgba(220, 38, 38, 0.3); }
+
+/* Nút Thống kê (Gradient đặc biệt) */
+.stat-card.statistics-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+}
+
+.stat-card.statistics-btn svg {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.stat-card.statistics-btn h3 {
+  color: white;
+  font-size: 1.4rem;
+}
+
+.stat-card.statistics-btn p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.stat-card.statistics-btn .arrow-icon {
+  transition: transform 0.3s ease;
+  color: white;
+}
+
+.stat-card.statistics-btn:hover .arrow-icon {
+  transform: translateX(5px);
+}
+
+.stat-card.statistics-btn:hover {
+  box-shadow: 0 20px 25px -5px rgba(102, 126, 234, 0.4);
+  transform: translateY(-8px) scale(1.02);
+}
+
+
+.stat-card h3 { font-size: 1.8rem; margin: 0; font-weight: 800; color: #1a202c; }
+.stat-card p { margin: 5px 0 0; color: #718096; font-weight: 500; }
+
+/* Badge SQL/Tăng giảm */
+.stat-growth {
+  position: absolute;
+  top: 15px; right: 15px;
+  font-size: 0.75rem; font-weight: bold;
+  padding: 4px 10px; border-radius: 20px;
+}
+.stat-growth.up { background: #def7ec; color: #046c4e; }
+.stat-growth.down { background: #fde8e8; color: #c81e1e; }
+
+/* --- RECENT ACTIVITY (Dạng Timeline) --- */
+.recent-activity {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+.recent-activity h2 {
+  margin-top: 0; margin-bottom: 25px;
+  font-size: 1.4rem; color: #2d3748;
+  padding-bottom: 15px; border-bottom: 2px solid #edf2f7;
+}
+
+.activity-list {
+  display: flex; flex-direction: column; gap: 0; /* Reset gap để làm timeline */
+}
+
+.activity-item {
+  padding: 15px 0;
+  border-left: 3px solid #e2e8f0; /* Đường kẻ timeline */
+  padding-left: 25px;
+  position: relative;
+}
+
+/* Dấu chấm tròn trên timeline */
+.activity-item::before {
+  content: '';
+  position: absolute; left: -8px; top: 50%; transform: translateY(-50%);
+  width: 13px; height: 13px;
+  background: #4299e1; border: 3px solid white;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px #4299e1;
+}
+
+.activity-item strong { color: #2b6cb0; font-weight: 700; }
+.activity-item em { color: #4a5568; font-style: normal; font-weight: 600; background: #edf2f7; padding: 2px 6px; border-radius: 4px;}
+
+/* --- FAB BUTTON (Nút dấu cộng) --- */
+.fab-button {
+  position: fixed; bottom: 40px; right: 40px;
+  background: linear-gradient(135deg, #4f46e5, #3b82f6);
+  color: white;
+  width: 65px; height: 65px;
+  border-radius: 50%; border: none;
+  box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.5);
+  cursor: pointer;
+  display: flex; align-items: center; justifyContent: center;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); /* Hiệu ứng nảy */
+}
+
+.fab-button:hover {
+  transform: scale(1.1) rotate(90deg); /* Xoay và phóng to khi hover */
+  box-shadow: 0 15px 30px -5px rgba(79, 70, 229, 0.6);
+}
